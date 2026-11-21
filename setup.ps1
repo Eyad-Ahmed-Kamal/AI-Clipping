@@ -27,7 +27,7 @@ try {
     if (-not (Test-Path -LiteralPath $python)) {
         Invoke-Checked uv @('venv','--python','3.12','--managed-python','.venv')
     }
-    Invoke-Checked $python @('-c','import sys; sys.exit(0 if sys.version_info[:2] == (3, 12) and sys.maxsize > 2**32 else "Expected 64-bit Python 3.12 in .venv")')
+    Invoke-Checked $python @('-c',"import sys; sys.exit(0 if sys.version_info[:2] == (3, 12) and sys.maxsize > 2**32 else 'Expected 64-bit Python 3.12 in .venv')")
     $statePath = Join-Path $PSScriptRoot 'cache\setup-state.json'
     $state = if (Test-Path -LiteralPath $statePath) { Get-Content -Raw -LiteralPath $statePath | ConvertFrom-Json }
     if (-not $Target) { $Target = if ($state.target) { $state.target } else { 'Antigravity' } }
