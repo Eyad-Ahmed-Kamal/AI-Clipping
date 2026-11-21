@@ -1,0 +1,4 @@
+interface:
+  display_name: "Video Clipper"
+  short_description: "Review Short ideas and produce your picks"
+  default_prompt: "Use $video-clipper to review my video and pitch timestamped ideas for me to choose."

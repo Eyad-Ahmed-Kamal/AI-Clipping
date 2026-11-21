@@ -1,0 +1,35 @@
+{
+  "arabic-gaming": {
+    "language": "ar",
+    "initial_prompt": "كلام مصري طبيعي ومصطلحات إنجليزي وجيمنج زي GTA 6, YouTube, Shorts, Stream, FPS, PC, PlayStation, Xbox.",
+    "caption_font": "Tajawal",
+    "caption_style": "word_highlight",
+    "highlight_color": "yellow",
+    "default_layout": "fit",
+    "width": 1080,
+    "fps": 30,
+    "notes": "Keep Egyptian dialogue natural. Review mixed Arabic/English words. Set webcam_stack or face_track after inspecting source frames."
+  },
+  "arabic-podcast": {
+    "language": "ar",
+    "initial_prompt": "حوار عربي مصري طبيعي ومصطلحات تقنية وإنجليزي زي AI, Python, Startup, YouTube, Podcast, Shorts.",
+    "caption_font": "Tajawal",
+    "caption_style": "word_highlight",
+    "highlight_color": "yellow",
+    "default_layout": "face_track",
+    "width": 1080,
+    "fps": 30,
+    "notes": "Use face_track for talking-head podcasts; verify crop stability in the 360p preview."
+  },
+  "english-gaming": {
+    "language": "en",
+    "initial_prompt": "",
+    "caption_font": "Arial",
+    "caption_style": "word_highlight",
+    "highlight_color": "yellow",
+    "default_layout": "fit",
+    "width": 1080,
+    "fps": 30,
+    "notes": "Preserve setup and payoff. Avoid misleading hook text or a crop that hides gameplay."
+  }
+}

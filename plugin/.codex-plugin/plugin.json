@@ -1,0 +1,23 @@
+{
+  "name": "video-clipper",
+  "version": "1.1.0",
+  "description": "Analyze source videos locally, pitch timestamped vertical Short ideas, and produce reviewed highlights or narrated Shorts with face tracking, Arabic word-highlight captions, and Egyptian ASR tuning.",
+  "author": {
+    "name": "Eyad"
+  },
+  "keywords": ["video", "shorts", "clipping", "ffmpeg", "whisper", "face-tracking", "arabic"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Video Clipper",
+    "shortDescription": "Review Short ideas and produce approved vertical clips locally",
+    "longDescription": "Analyze source videos locally with Whisper, OpenCV YuNet face tracking, and FFmpeg; pitch timestamped vertical Short ideas for selection; then render reviewed highlights or narrated Shorts with Arabic word-highlight captions.",
+    "developerName": "Eyad",
+    "category": "Creative",
+    "capabilities": ["Interactive", "Read", "Write"],
+    "composerIcon": "./assets/logo.svg",
+    "logo": "./assets/logo.svg",
+    "defaultPrompt": [
+      "Use $video-clipper to review my video and pitch timestamped ideas for me to choose."
+    ]
+  }
+}

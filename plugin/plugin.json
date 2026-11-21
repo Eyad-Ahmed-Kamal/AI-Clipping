@@ -1,0 +1,15 @@
+{
+  "name": "video-clipper",
+  "displayName": "Video Clipper",
+  "version": "1.1.0",
+  "description": "Analyze source videos locally, pitch timestamped vertical Short ideas, and produce reviewed highlights or narrated Shorts with face tracking, Arabic word-highlight captions, and Egyptian ASR tuning.",
+  "author": {
+    "name": "Eyad"
+  },
+  "logo": "assets/logo.svg",
+  "suggestedPrompts": [
+    "Analyze this video link and pitch 5 timestamped Short ideas for me to choose",
+    "Plan a narrated vertical Short from this trailer with script, beats, and shot map",
+    "Run doctor on the local video clipping workbench and report hardware readiness"
+  ]
+}

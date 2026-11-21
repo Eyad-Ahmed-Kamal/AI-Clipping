@@ -1,0 +1,91 @@
+{
+  "openshorts": {
+    "url": "https://github.com/mutonby/openshorts",
+    "commit": "8af4a48a2bdda96c9a02bb8df3f09d4e7ec99e0f",
+    "license": "MIT",
+    "files": {
+      "recut.py": "42ac2bb56826a90552e6625cc5e1e98751c00098d216d63e9c02d777fea8196c",
+      "ffmpeg_utils.py": "ce7cd7cdeb6a2e36337ecf9f61525fcc2b5c66ccfa2ee826c16fef9d224b8a78",
+      "subtitles.py": "0ea858841abf0a82b473656808ec46e810ad8f8a903c236833bf7478cd276ff0",
+      "gpu_decode.py": "a0c6e50ab4911d809c8002f5522fd1e0be434620fb2827c874568e98c415d74f",
+      "LICENSE": "a70f789d94b4d8519ba16f8050b1f51785de5e187a8f2fb329b7986df6b61586"
+    }
+  },
+  "samples": {
+    "jfk.wav": "https://raw.githubusercontent.com/ggml-org/whisper.cpp/master/samples/jfk.wav",
+    "speech-test.mp4": "Locally generated test image with jfk sample audio",
+    "arabic_caption_fixture": "Manually authored artificial captions; not ASR output"
+  },
+  "models": {
+    "base": {
+      "source": "Existing local Systran snapshot ebe41f70d5b6dfa9166e2c581c45c9c0cfc57b66, copied without altering original cache",
+      "sha256": "d01c3014881c9c6f3133c182f3d2887eb6ca1c789a7538c5c007196857a0a6a9",
+      "verified_against": "https://huggingface.co/api/models/Systran/faster-whisper-base/tree/main"
+    },
+    "turbo": {
+      "status": "installed_verified",
+      "source": "https://huggingface.co/dropbox-dash/faster-whisper-large-v3-turbo",
+      "sha256": "e76620f83d5f5b69efd3d87e3dc180c1bd21df9fbebacfd4335e5e1efcc018da",
+      "bytes": 1617884929
+    }
+  },
+  "youtube": {
+    "full_ingest_passed": true,
+    "test_video_id": "jNQXAC9IVRw",
+    "runtime_support": [
+      "deno",
+      "node"
+    ]
+  },
+  "gpu_wheels": [
+    {
+      "comment_text": null,
+      "core-metadata": {
+        "sha256": "e16eb06ed054ecf152abcf5219b73fa3c708a0d9f7fa0e4a68ee95c0c19c32de"
+      },
+      "digests": {
+        "blake2b_256": "20e2fc9a0e985249d873150276d5afb02e39a66817fedbf1a385724393e505ed",
+        "md5": "9f5b07778be475374448f5479337e998",
+        "sha256": "623f43027d40d44ceadf0043f002bd25cf353e8f13ce90b9a87057019f560661"
+      },
+      "downloads": -1,
+      "filename": "nvidia_cublas_cu12-12.9.2.10-py3-none-win_amd64.whl",
+      "has_sig": false,
+      "md5_digest": "9f5b07778be475374448f5479337e998",
+      "packagetype": "bdist_wheel",
+      "python_version": "py3",
+      "requires_python": ">=3",
+      "size": 553162896,
+      "upload_time": "2026-04-08T18:53:10",
+      "upload_time_iso_8601": "2026-04-08T18:53:10.035570Z",
+      "url": "https://files.pythonhosted.org/packages/20/e2/fc9a0e985249d873150276d5afb02e39a66817fedbf1a385724393e505ed/nvidia_cublas_cu12-12.9.2.10-py3-none-win_amd64.whl",
+      "yanked": false,
+      "yanked_reason": null
+    },
+    {
+      "comment_text": "",
+      "core-metadata": {
+        "sha256": "0ecaf270ef51779294e63a18a104ed40b419782c2320a6d2bd0894462d140177"
+      },
+      "digests": {
+        "blake2b_256": "c7bd1d6709d2223e99f04079f16005f8ae6e11a14ee16b5eab6833686cf72fe1",
+        "md5": "cf8ec4b5ba555ca8d4aa12387cb9582b",
+        "sha256": "3467aafa9b260e6adf5fbbfc0e21d180133305b42032aa1160be2d3142bb8b09"
+      },
+      "downloads": -1,
+      "filename": "nvidia_cudnn_cu12-9.28.1.4-py3-none-win_amd64.whl",
+      "has_sig": false,
+      "md5_digest": "cf8ec4b5ba555ca8d4aa12387cb9582b",
+      "packagetype": "bdist_wheel",
+      "python_version": "py3",
+      "requires_python": ">=3",
+      "size": 696300805,
+      "upload_time": "2026-11-06T21:54:48",
+      "upload_time_iso_8601": "2026-11-06T21:54:48.887379Z",
+      "url": "https://files.pythonhosted.org/packages/c7/bd/1d6709d2223e99f04079f16005f8ae6e11a14ee16b5eab6833686cf72fe1/nvidia_cudnn_cu12-9.28.1.4-py3-none-win_amd64.whl",
+      "yanked": false,
+      "yanked_reason": null
+    }
+  ],
+  "validation_record": "hardware-validation.json"
+}

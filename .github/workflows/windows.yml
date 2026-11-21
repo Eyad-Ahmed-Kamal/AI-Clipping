@@ -1,0 +1,26 @@
+name: Windows clipping tests
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  cpu:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: Install FFmpeg
+        run: choco install ffmpeg --yes --no-progress
+      - name: Run render regressions on CPU
+        shell: pwsh
+        run: |
+          . .\Activate-Clipping.ps1
+          New-Item -ItemType Directory -Force temp,jobs,cache,vendor,models | Out-Null
+          uv venv --python 3.12 --managed-python .venv
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          uv pip install --python .venv/Scripts/python.exe -r requirements-lock.txt
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          .\.venv\Scripts\python.exe tools/install_assets.py --render-only
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          $env:FFMPEG_ENCODER = 'x264'
+          .\.venv\Scripts\python.exe -m unittest -v test_clipping
