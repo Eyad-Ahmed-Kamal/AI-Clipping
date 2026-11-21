@@ -67,14 +67,17 @@ def install_tree(destination, exclude, backup_root):
 
 
 def codex_config(path, marketplace):
-    raw = path.read_text(encoding="utf-8-sig") if path.exists() else ""
-    config = tomllib.loads(raw)
+    raw = path.read_bytes().decode("utf-8") if path.exists() else ""
+    config = tomllib.loads(raw.lstrip("\ufeff"))
     entry = config.get("marketplaces", {}).get(NAME)
     if entry is None:
-        raw += f'\n[marketplaces.{NAME}]\nsource_type = "local"\nsource = {json.dumps(str(marketplace))}\n'
+        raw += f'\n[marketplaces.{NAME}]\nsource_type = "local"\nsource = {json.dumps(str(marketplace), ensure_ascii=False)}\n'
     else:
         source = Path(entry.get("source", ""))
-        if entry.get("source_type") != "local" or source.resolve() != marketplace.resolve():
+        same_path = source.resolve() == marketplace.resolve()
+        if not same_path and source.exists() and marketplace.exists():
+            same_path = source.samefile(marketplace)
+        if entry.get("source_type") != "local" or not same_path:
             raise ValueError(f"Existing {NAME} marketplace points elsewhere in {path}.")
     plugin_id = NAME + "@" + NAME
     entry = config.get("plugins", {}).get(plugin_id)
@@ -82,7 +85,7 @@ def codex_config(path, marketplace):
         raw += f'\n[plugins."{plugin_id}"]\nenabled = true\n'
     elif entry.get("enabled") is False:
         print("The existing Codex configuration disables Video Clipper. Enable it in Codex to use it.")
-    tomllib.loads(raw)
+    tomllib.loads(raw.lstrip("\ufeff"))
     return raw
 
 
@@ -98,6 +101,10 @@ def install(target, profile):
     with (settings / "install.lock").open("a+b") as lock:
         lock.seek(0)
         msvcrt.locking(lock.fileno(), msvcrt.LK_NBLCK, 1)
+        path = settings / "config.json"
+        settings_data = json.loads(path.read_text(encoding="utf-8-sig")) if path.exists() else {}
+        if not isinstance(settings_data, dict):
+            raise ValueError(f"Expected a JSON object in {path}")
         codex = profile / ".codex"
         marketplace = codex / "plugins" / "cache" / NAME
         if target in ("Both", "Codex"):
@@ -111,10 +118,8 @@ def install(target, profile):
             write_text(codex / "config.toml", config)
         if target in ("Both", "Antigravity"):
             install_tree(profile / ".gemini/config/plugins" / NAME, ".codex-plugin", settings / "backups/antigravity")
-        path = settings / "config.json"
-        config = json.loads(path.read_text(encoding="utf-8-sig")) if path.exists() else {}
-        config.update(root=str(ROOT), plugin_version=version)
-        write_json(path, config)
+        settings_data.update(root=str(ROOT), plugin_version=version)
+        write_json(path, settings_data)
     print(f"Installed {NAME} {version} for {target}. Reload the selected application.")
 
 

@@ -313,6 +313,21 @@ class PluginInstallTests(unittest.TestCase):
             self.assertEqual(config_path.read_bytes(), config_before)
             self.assertTrue(tomllib.loads(config_path.read_text())["plugins"]["video-clipper@video-clipper"]["enabled"])
 
+    def test_upgrade_recognizes_legacy_windows_marketplace_path(self):
+        from tools.install_plugin import codex_config
+
+        with tempfile.TemporaryDirectory(dir=clipping.ROOT / "temp") as directory:
+            root = Path(directory)
+            marketplace = root / "cache"
+            marketplace.mkdir()
+            config = root / "config.toml"
+            legacy = chr(92) * 2 + "?" + chr(92) + str(marketplace.resolve())
+            original = f"[marketplaces.video-clipper]\nsource_type = \"local\"\nsource = '{legacy}'\n"
+            config.write_bytes(original.encode("utf-8"))
+            updated = codex_config(config, marketplace)
+            self.assertTrue(updated.startswith(original))
+            self.assertEqual(updated.count("[marketplaces.video-clipper]"), 1)
+
     def test_failed_plugin_switch_restores_previous_tree(self):
         from tools.install_plugin import install_tree
 

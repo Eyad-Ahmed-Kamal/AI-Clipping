@@ -35,6 +35,9 @@ def download(url, destination, digest):
     if destination.is_file() and file_hash(destination) == digest:
         return
     partial = destination.with_name(digest + ".part")
+    if partial.is_file() and file_hash(partial) == digest:
+        os.replace(partial, destination)
+        return
     print(f"Downloading {destination.name}", flush=True)
     options = ["curl.exe", "--fail", "--location", "--silent", "--show-error",
                "--retry", "3", "--connect-timeout", "20", "--speed-limit", "1024", "--speed-time", "90"]
